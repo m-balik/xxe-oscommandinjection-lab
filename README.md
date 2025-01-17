@@ -112,6 +112,9 @@ Elde edilen yanıt, `app.py` dosyasının içeriğini gösterecektir:
 
 Kodda `/ping`, `/filter`, ve `/blind` endpointleri, kullanıcının girdiği IP adreslerini bir sistem komutunda kullanıyor:
 
+![image](https://github.com/user-attachments/assets/ac3ab295-d658-485f-a677-f53c5155dbb8)
+
+
 ```python
 command = 'ping -c 4 {}'.format(ip_address)
 result = os.popen(command).read()
@@ -162,6 +165,8 @@ Ping çıktısının ardından `flag.txt` dosyasının içeriği görüntülenir
 ---
 
 ### Blind Command Injection
+
+![image](https://github.com/user-attachments/assets/87a16fa5-2765-40b6-90bc-7e592f2ec36d)
 
 `/blind` endpointinde komutların çıktısı doğrudan kullanıcıya gösterilmiyor. Ancak komutun sonuçlarını bizim kontrol ettiğimiz bir servera göndererek zafiyeti kullanabiliriz:
 
