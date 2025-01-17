@@ -99,7 +99,7 @@ Elde edilen yanıt, `app.py` dosyasının içeriğini gösterecektir:
 
 ```xml
 <result>
-  <username>FLAG{this_is_the_flag}</username>
+  <username>app.py ın içeriği</username>
   <password>dummy</password>
 </result>
 ```
