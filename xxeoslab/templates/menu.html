@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telnet Bağlantı Kurma Hizmeti</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 50vh;
+            margin: 0;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        select {
+            margin: 10px 0;
+            padding: 8px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div style="position: fixed; bottom: 10px; left: 10px;">
+        <a href="filter">Filter Ping</a><br>
+        <a href="blind">Blind Ping</a><br>
+        <a href="menu">Menu Ping</a>
+    </div>
+    
+    <h1>Menu Ping</h1>
+    <form action="/ping" method="POST">
+    	<label for="ip">Select IP Address:</label>
+        <select id="ip" name="ip" required>
+            <option value="127.0.0.1">127.0.0.1</option>
+            <option value="google.com">google.com</option>
+            <option value="turkcell.com.tr">turkcell.com</option>
+            <option value="gtu.edu.tr">gtucyber</option>
+        </select>
+        
+        <button type="submit">Bağlantı Kur</button>
+    </form>
+</body>
+</html>
