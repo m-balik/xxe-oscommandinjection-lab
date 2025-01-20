@@ -1,5 +1,6 @@
 # xxe-oscommandinjection-lab
 xxe and os command injection lab wich runs in local host
+![video](https://www.youtube.com/watch?v=l8Cl5ApqJBc).
 
 Dosyayı indirdikten sonra siteyi localhosta ayağa kaldırın.
 sudo python3 app.py
